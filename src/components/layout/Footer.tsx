@@ -40,6 +40,11 @@ export const Footer = () => {
               <li>New York, NY 10004</li>
               <li>United States</li>
               <li className="pt-2">
+                <a href="mailto:www.whitestonesmarkets@gmail.com" className="hover:text-primary">
+                  www.whitestonesmarkets@gmail.com
+                </a>
+              </li>
+              <li>
                 <a href="mailto:support@whitestonesmarkets.com" className="hover:text-primary">
                   support@whitestonesmarkets.com
                 </a>

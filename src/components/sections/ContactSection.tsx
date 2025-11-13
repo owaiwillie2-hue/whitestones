@@ -98,8 +98,8 @@ export const ContactSection = () => {
                 </div>
                 <div>
                   <h3 className="font-semibold mb-2">Email Us</h3>
+                  <p className="text-muted-foreground">www.whitestonesmarkets@gmail.com</p>
                   <p className="text-muted-foreground">support@whitestonesmarkets.com</p>
-                  <p className="text-muted-foreground">info@whitestonesmarkets.com</p>
                 </div>
               </div>
             </div>

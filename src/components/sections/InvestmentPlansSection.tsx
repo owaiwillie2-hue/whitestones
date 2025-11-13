@@ -6,60 +6,65 @@ export const InvestmentPlansSection = () => {
   const plans = [
     {
       name: "Starter Plan",
-      minAmount: "$500",
-      maxAmount: "$4,999",
-      roi: "25%",
-      duration: "7 Days",
+      minAmount: "$100",
+      maxAmount: "$999",
+      roi: "1%",
+      period: "Hourly",
+      referral: "5%",
       description: "Perfect for beginners looking to start their investment journey",
       features: [
-        "Professional portfolio management",
-        "24/7 customer support",
-        "Real-time performance tracking",
-        "Secure transactions"
+        "Hourly profit updates",
+        "24/7 support",
+        "Instant withdrawals",
+        "Referral bonus"
       ]
     },
     {
-      name: "Platinum Plan",
-      minAmount: "$5,000",
-      maxAmount: "$49,999",
-      roi: "45%",
-      duration: "14 Days",
+      name: "Growth Plan",
+      minAmount: "$1,000",
+      maxAmount: "$4,999",
+      roi: "1.8%",
+      period: "Hourly",
+      referral: "5%",
       description: "For serious investors seeking higher returns",
       features: [
-        "All Starter Plan features",
-        "Dedicated account manager",
-        "Priority withdrawal processing",
-        "Advanced analytics dashboard"
+        "Higher hourly returns",
+        "Priority support",
+        "Fast withdrawals",
+        "Referral bonus"
+      ]
+    },
+    {
+      name: "Pro Plan",
+      minAmount: "$5,000",
+      maxAmount: "$10,000",
+      roi: "26%",
+      period: "Daily",
+      referral: "5%",
+      description: "Premium plan for professional investors",
+      features: [
+        "Daily profit updates",
+        "VIP support",
+        "Premium features",
+        "Referral bonus"
       ],
       popular: true
     },
     {
-      name: "Executive Plan",
-      minAmount: "$50,000",
-      maxAmount: "$99,999",
-      roi: "65%",
-      duration: "21 Days",
-      description: "Premium plan for executive-level investors",
-      features: [
-        "All Platinum Plan features",
-        "Custom investment strategies",
-        "VIP customer service",
-        "Quarterly performance reviews"
-      ]
-    },
-    {
-      name: "Apex Plan",
-      minAmount: "$100,000+",
+      name: "Elite Plan",
+      minAmount: "$10,001",
       maxAmount: "Unlimited",
-      roi: "85%",
-      duration: "30 Days",
+      roi: "35%",
+      period: "Daily",
+      referral: "5%",
       description: "Our highest tier for elite investors",
       features: [
-        "All Executive Plan features",
-        "Personal investment advisor",
-        "Exclusive investment opportunities",
-        "White-glove concierge service"
-      ]
+        "Maximum returns",
+        "Dedicated account manager",
+        "All premium features",
+        "Referral bonus"
+      ],
+      popular: true
     }
   ];
 
@@ -94,16 +99,23 @@ export const InvestmentPlansSection = () => {
               
               <div className="mb-6">
                 <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-                <p className="text-sm text-muted-foreground mb-4">{plan.description}</p>
-                <div className="mb-2">
+                <div className="mb-4">
                   <span className="text-4xl font-bold text-primary">{plan.roi}</span>
-                  <span className="text-muted-foreground ml-2">ROI</span>
+                  <span className="text-muted-foreground ml-2 text-lg">{plan.period}</span>
                 </div>
-                <div className="text-sm text-muted-foreground">
-                  {plan.minAmount} - {plan.maxAmount}
-                </div>
-                <div className="text-sm text-muted-foreground">
-                  Duration: {plan.duration}
+                <div className="space-y-2 mb-4">
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Minimum:</span>
+                    <span className="font-semibold">{plan.minAmount}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Maximum:</span>
+                    <span className="font-semibold">{plan.maxAmount}</span>
+                  </div>
+                  <div className="flex justify-between text-sm">
+                    <span className="text-muted-foreground">Referral:</span>
+                    <span className="font-semibold">{plan.referral}</span>
+                  </div>
                 </div>
               </div>
 
