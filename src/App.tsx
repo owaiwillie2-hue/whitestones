@@ -14,6 +14,12 @@ import NotFound from "./pages/NotFound";
 import Deposit from "./pages/dashboard/Deposit";
 import Withdraw from "./pages/dashboard/Withdraw";
 import Settings from "./pages/dashboard/Settings";
+import Cryptocurrency from "./pages/investments/Cryptocurrency";
+import RealEstate from "./pages/investments/RealEstate";
+import OilGas from "./pages/investments/OilGas";
+import NFT from "./pages/investments/NFT";
+import Retirement from "./pages/investments/Retirement";
+import Loans from "./pages/investments/Loans";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +46,12 @@ const App = () => (
           <Route path="/dashboard/activity" element={<Settings />} />
           <Route path="/admin-dashboard" element={<AdminDashboard />} />
           <Route path="/kyc-verification" element={<KYCVerification />} />
+          <Route path="/investments/cryptocurrency" element={<Cryptocurrency />} />
+          <Route path="/investments/real-estate" element={<RealEstate />} />
+          <Route path="/investments/oil-gas" element={<OilGas />} />
+          <Route path="/investments/nft" element={<NFT />} />
+          <Route path="/investments/retirement" element={<Retirement />} />
+          <Route path="/investments/loans" element={<Loans />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
