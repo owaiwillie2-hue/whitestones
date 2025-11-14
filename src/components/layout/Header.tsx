@@ -10,12 +10,12 @@ export const Header = () => {
   const navLinks = [
     { name: "Home", href: "/" },
     { name: "Investments", href: "#investments" },
-    { name: "Cryptocurrencies", href: "#crypto" },
-    { name: "Real Estate", href: "#real-estate" },
-    { name: "Oil and Gas", href: "#oil-gas" },
-    { name: "NFT", href: "#nft" },
-    { name: "Retirement", href: "#retirement" },
-    { name: "Loan", href: "#loan" },
+    { name: "Cryptocurrencies", href: "/investments/cryptocurrency" },
+    { name: "Real Estate", href: "/investments/real-estate" },
+    { name: "Oil and Gas", href: "/investments/oil-gas" },
+    { name: "NFT", href: "/investments/nft" },
+    { name: "Retirement", href: "/investments/retirement" },
+    { name: "Loan", href: "/investments/loans" },
     { name: "Company", href: "#about" },
   ];
 
@@ -28,7 +28,16 @@ export const Header = () => {
 
         {/* Desktop Navigation */}
         <div className="hidden lg:flex lg:items-center lg:gap-8">
-          {navLinks.map((link) => (
+        {navLinks.map((link) => (
+          link.href.startsWith('/') ? (
+            <Link
+              key={link.name}
+              to={link.href}
+              className="text-sm font-medium text-foreground/80 transition-colors hover:text-primary"
+            >
+              {link.name}
+            </Link>
+          ) : (
             <a
               key={link.name}
               href={link.href}
@@ -36,7 +45,8 @@ export const Header = () => {
             >
               {link.name}
             </a>
-          ))}
+          )
+        ))}
         </div>
 
         {/* Desktop Actions */}
@@ -62,7 +72,17 @@ export const Header = () => {
       {isMenuOpen && (
         <div className="lg:hidden border-t border-border/40 bg-background">
           <div className="container py-6 space-y-4">
-            {navLinks.map((link) => (
+          {navLinks.map((link) => (
+            link.href.startsWith('/') ? (
+              <Link
+                key={link.name}
+                to={link.href}
+                className="block text-sm font-medium text-foreground/80 hover:text-primary"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ) : (
               <a
                 key={link.name}
                 href={link.href}
@@ -71,7 +91,8 @@ export const Header = () => {
               >
                 {link.name}
               </a>
-            ))}
+            )
+          ))}
             <div className="flex flex-col gap-4 pt-4">
               <Link to="/login" onClick={() => setIsMenuOpen(false)}>
                 <Button variant="outline" className="w-full">Login</Button>

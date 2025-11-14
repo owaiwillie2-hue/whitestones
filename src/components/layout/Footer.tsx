@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo.jpg";
 
 export const Footer = () => {
+  const { t } = useTranslation();
+  
   return (
     <footer className="border-t border-border bg-muted/30">
       <div className="container py-12">
@@ -14,7 +18,7 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Quick Links</h3>
+            <h3 className="font-semibold mb-4">{t('quickLinks')}</h3>
             <ul className="space-y-2 text-sm">
               <li><a href="/#about" className="text-muted-foreground hover:text-primary">About Us</a></li>
               <li><a href="/#investments" className="text-muted-foreground hover:text-primary">Investments</a></li>
@@ -34,27 +38,26 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="font-semibold mb-4">Contact</h3>
+            <h3 className="font-semibold mb-4">{t('contactUs')}</h3>
             <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>123 Financial District</li>
-              <li>New York, NY 10004</li>
-              <li>United States</li>
+              <li>{t('address')}: London, UK</li>
               <li className="pt-2">
                 <a href="mailto:www.whitestonesmarkets@gmail.com" className="hover:text-primary">
-                  www.whitestonesmarkets@gmail.com
+                  {t('email')}: www.whitestonesmarkets@gmail.com
                 </a>
               </li>
               <li>
-                <a href="mailto:support@whitestonesmarkets.com" className="hover:text-primary">
-                  support@whitestonesmarkets.com
-                </a>
+                {t('phone')}: +44 20 1234 5678
               </li>
             </ul>
+            <div className="mt-4">
+              <LanguageSwitcher />
+            </div>
           </div>
         </div>
 
         <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
-          <p>&copy; {new Date().getFullYear()} Whitestones Markets. All rights reserved.</p>
+          <p>&copy; {new Date().getFullYear()} Whitestones Markets. {t('allRightsReserved')}</p>
         </div>
       </div>
       

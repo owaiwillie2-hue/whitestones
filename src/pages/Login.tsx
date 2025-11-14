@@ -6,11 +6,14 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
+import { useTranslation } from "react-i18next";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import logo from "@/assets/logo.jpg";
 
 export default function Login() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { t } = useTranslation();
   const [loading, setLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
@@ -66,15 +69,19 @@ export default function Login() {
     <div className="min-h-screen bg-gradient-hero flex items-center justify-center p-4">
       <div className="w-full max-w-md">
         <div className="bg-card rounded-xl shadow-xl p-8">
+          <div className="flex justify-end mb-4">
+            <LanguageSwitcher />
+          </div>
+
           <div className="text-center mb-8">
             <img src={logo} alt="Whitestones Markets" className="h-12 mx-auto mb-4" />
             <h1 className="text-2xl font-bold">Welcome Back</h1>
-            <p className="text-muted-foreground mt-2">Login to your account</p>
+            <p className="text-muted-foreground mt-2">{t('signInToAccount')}</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <Label htmlFor="email">Email Address</Label>
+              <Label htmlFor="email">{t('email')}</Label>
               <Input
                 id="email"
                 name="email"
@@ -86,7 +93,7 @@ export default function Login() {
             </div>
 
             <div>
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password">{t('password')}</Label>
               <Input
                 id="password"
                 name="password"
@@ -120,14 +127,14 @@ export default function Login() {
               className="w-full bg-gradient-primary"
               disabled={loading}
             >
-              {loading ? "Logging in..." : "Login"}
+              {loading ? "Logging in..." : t('login')}
             </Button>
           </form>
 
           <p className="text-center text-sm text-muted-foreground mt-6">
-            New on our platform?{" "}
+            {t('dontHaveAccount')}{" "}
             <Link to="/signup" className="text-primary hover:underline">
-              Create an account
+              {t('createAccount')}
             </Link>
           </p>
         </div>

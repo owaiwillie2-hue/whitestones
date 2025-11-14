@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, TrendingUp } from "lucide-react";
+import CountUp from "react-countup";
+import { useInView } from "react-intersection-observer";
 
 export const HeroSection = () => {
+  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.1 });
+
   return (
     <section className="relative overflow-hidden bg-gradient-hero py-20 md:py-32">
       <div className="absolute inset-0 bg-grid-white/10" />
@@ -45,17 +49,23 @@ export const HeroSection = () => {
             </Link>
           </div>
 
-          <div className="mt-12 flex flex-wrap justify-center gap-8 text-white">
+          <div ref={ref} className="mt-12 flex flex-wrap justify-center gap-8 text-white">
             <div className="text-center">
-              <div className="text-3xl font-bold">$2.5B+</div>
+              <div className="text-3xl font-bold">
+                ${inView && <CountUp end={2.5} decimals={1} duration={2.5} />}B+
+              </div>
               <div className="text-sm text-white/80">Assets Under Management</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold">50K+</div>
+              <div className="text-3xl font-bold">
+                {inView && <CountUp end={50} duration={2.5} />}K+
+              </div>
               <div className="text-sm text-white/80">Active Investors</div>
             </div>
             <div className="text-center">
-              <div className="text-3xl font-bold">15+</div>
+              <div className="text-3xl font-bold">
+                {inView && <CountUp end={15} duration={2.5} />}+
+              </div>
               <div className="text-sm text-white/80">Years Experience</div>
             </div>
           </div>
