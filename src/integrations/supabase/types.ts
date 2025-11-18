@@ -14,15 +14,53 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_logs: {
+        Row: {
+          action_type: string
+          created_at: string | null
+          description: string | null
+          device_info: string | null
+          id: string
+          ip_address: string | null
+          location: string | null
+          user_agent: string | null
+          user_id: string
+        }
+        Insert: {
+          action_type: string
+          created_at?: string | null
+          description?: string | null
+          device_info?: string | null
+          id?: string
+          ip_address?: string | null
+          location?: string | null
+          user_agent?: string | null
+          user_id: string
+        }
+        Update: {
+          action_type?: string
+          created_at?: string | null
+          description?: string | null
+          device_info?: string | null
+          id?: string
+          ip_address?: string | null
+          location?: string | null
+          user_agent?: string | null
+          user_id?: string
+        }
+        Relationships: []
+      }
       deposits: {
         Row: {
           amount: number
           created_at: string | null
+          deposit_address: string | null
           id: string
           payment_method: string | null
           processed_at: string | null
           processed_by: string | null
           proof_url: string | null
+          qr_code_url: string | null
           status: Database["public"]["Enums"]["transaction_status"] | null
           transaction_id: string | null
           user_id: string
@@ -30,11 +68,13 @@ export type Database = {
         Insert: {
           amount: number
           created_at?: string | null
+          deposit_address?: string | null
           id?: string
           payment_method?: string | null
           processed_at?: string | null
           processed_by?: string | null
           proof_url?: string | null
+          qr_code_url?: string | null
           status?: Database["public"]["Enums"]["transaction_status"] | null
           transaction_id?: string | null
           user_id: string
@@ -42,11 +82,13 @@ export type Database = {
         Update: {
           amount?: number
           created_at?: string | null
+          deposit_address?: string | null
           id?: string
           payment_method?: string | null
           processed_at?: string | null
           processed_by?: string | null
           proof_url?: string | null
+          qr_code_url?: string | null
           status?: Database["public"]["Enums"]["transaction_status"] | null
           transaction_id?: string | null
           user_id?: string
@@ -130,6 +172,8 @@ export type Database = {
           full_name: string
           id: string
           phone_number: string | null
+          referral_code: string | null
+          role: string | null
           updated_at: string | null
         }
         Insert: {
@@ -139,6 +183,8 @@ export type Database = {
           full_name: string
           id: string
           phone_number?: string | null
+          referral_code?: string | null
+          role?: string | null
           updated_at?: string | null
         }
         Update: {
@@ -148,7 +194,63 @@ export type Database = {
           full_name?: string
           id?: string
           phone_number?: string | null
+          referral_code?: string | null
+          role?: string | null
           updated_at?: string | null
+        }
+        Relationships: []
+      }
+      referrals: {
+        Row: {
+          bonus_amount: number | null
+          created_at: string | null
+          id: string
+          referral_code: string
+          referred_id: string
+          referrer_id: string
+          status: string | null
+        }
+        Insert: {
+          bonus_amount?: number | null
+          created_at?: string | null
+          id?: string
+          referral_code: string
+          referred_id: string
+          referrer_id: string
+          status?: string | null
+        }
+        Update: {
+          bonus_amount?: number | null
+          created_at?: string | null
+          id?: string
+          referral_code?: string
+          referred_id?: string
+          referrer_id?: string
+          status?: string | null
+        }
+        Relationships: []
+      }
+      site_settings: {
+        Row: {
+          id: string
+          setting_key: string
+          setting_value: string | null
+          updated_at: string | null
+          updated_by: string | null
+        }
+        Insert: {
+          id?: string
+          setting_key: string
+          setting_value?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
+        }
+        Update: {
+          id?: string
+          setting_key?: string
+          setting_value?: string | null
+          updated_at?: string | null
+          updated_by?: string | null
         }
         Relationships: []
       }
@@ -250,6 +352,63 @@ export type Database = {
         }
         Relationships: []
       }
+      withdrawal_accounts: {
+        Row: {
+          account_holder_name: string | null
+          account_number: string | null
+          account_type: string
+          bank_currency: string | null
+          bank_name: string | null
+          created_at: string | null
+          email_address: string | null
+          id: string
+          is_default: boolean | null
+          is_verified: boolean | null
+          routing_number: string | null
+          swift_code: string | null
+          updated_at: string | null
+          user_id: string
+          wallet_address: string | null
+          wallet_name: string | null
+        }
+        Insert: {
+          account_holder_name?: string | null
+          account_number?: string | null
+          account_type: string
+          bank_currency?: string | null
+          bank_name?: string | null
+          created_at?: string | null
+          email_address?: string | null
+          id?: string
+          is_default?: boolean | null
+          is_verified?: boolean | null
+          routing_number?: string | null
+          swift_code?: string | null
+          updated_at?: string | null
+          user_id: string
+          wallet_address?: string | null
+          wallet_name?: string | null
+        }
+        Update: {
+          account_holder_name?: string | null
+          account_number?: string | null
+          account_type?: string
+          bank_currency?: string | null
+          bank_name?: string | null
+          created_at?: string | null
+          email_address?: string | null
+          id?: string
+          is_default?: boolean | null
+          is_verified?: boolean | null
+          routing_number?: string | null
+          swift_code?: string | null
+          updated_at?: string | null
+          user_id?: string
+          wallet_address?: string | null
+          wallet_name?: string | null
+        }
+        Relationships: []
+      }
       withdrawals: {
         Row: {
           amount: number
@@ -260,6 +419,7 @@ export type Database = {
           status: Database["public"]["Enums"]["transaction_status"] | null
           user_id: string
           wallet_address: string
+          withdrawal_account_id: string | null
         }
         Insert: {
           amount: number
@@ -270,6 +430,7 @@ export type Database = {
           status?: Database["public"]["Enums"]["transaction_status"] | null
           user_id: string
           wallet_address: string
+          withdrawal_account_id?: string | null
         }
         Update: {
           amount?: number
@@ -280,8 +441,17 @@ export type Database = {
           status?: Database["public"]["Enums"]["transaction_status"] | null
           user_id?: string
           wallet_address?: string
+          withdrawal_account_id?: string | null
         }
-        Relationships: []
+        Relationships: [
+          {
+            foreignKeyName: "withdrawals_withdrawal_account_id_fkey"
+            columns: ["withdrawal_account_id"]
+            isOneToOne: false
+            referencedRelation: "withdrawal_accounts"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
